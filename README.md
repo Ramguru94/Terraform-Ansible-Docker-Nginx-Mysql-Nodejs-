@@ -1,5 +1,5 @@
-# terraform-ansible-example
-Quick start on how to provision with ansible inside terraform
+# terraform-ansible-Docker(Nginx, Mysql, NodeJS)
+Quick start on how to orchestrate EC2 instance with Terraform and configure the instance using Ansible to build Docker containers.
 
 ## Project structure
 * ansible - folder with ansible playbooks, inventories and configuration
@@ -11,6 +11,7 @@ aws_access_key_id = <AWS_ACCESS_TOKEN>
 aws_secret_access_key = <AWS_SECRET_ACCESS_KEY>
 regions = us-east-1
 
+or aws access key and secret key can be hardcodedin the terraform tfvars file to pass as variables.
 ## Usage
 if you want just up example infrastructure you need set your variables in .tfvars files
 ```
@@ -18,6 +19,8 @@ pub_key_path = "~/.ssh/id_rsa.pub"
 private_key_path = "~/.ssh/id_rsa"
 key_name = "sample"
 env = "dev"
+aws_secret_access_key = ""
+aws_access_key_id = ""
 ```
 
 Go to terraform folder and download all modules to .terraform folder (for local modules it just creates symlinks)
