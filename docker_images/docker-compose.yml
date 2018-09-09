@@ -2,7 +2,7 @@ version: '3'
 
 services:
   mysqldb:
-    image: mysql:5.7_v2
+    image: mysql:5.7_v1
     container_name: mysqldb
     build:
       context: ./mysql
@@ -18,7 +18,7 @@ services:
     network_mode: bridge
 
   nodejs:
-    image: nodejs:v3
+    image: nodejs:v1
     container_name: nodejs
     build:
       context: ./nodejs
@@ -28,10 +28,12 @@ services:
       - mysqldb
     links:
       - "mysqldb:db"
+    environment:
+      - NODEJS_API_PORT=8080
     network_mode: bridge
 
   nginx:
-    image: nginx:v3
+    image: nginx:v1
     container_name: nginx
     build:
       context: ./nginx
