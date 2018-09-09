@@ -1,0 +1,42 @@
+version: '3'
+
+services:
+  mysqldb:
+    image: mysql:5.7_v2
+    container_name: mysqldb
+    build:
+      context: ./mysql
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: mysq1root!
+      MYSQL_DATABASE: database_schema
+      MYSQL_USER: nodeuser
+      MYSQL_PASSWORD: nodeuser!
+    volumes:
+      - ./mysql/data:/var/lib/mysql
+    network_mode: bridge
+
+  nodejs:
+    image: nodejs:v3
+    container_name: nodejs
+    build:
+      context: ./nodejs
+    ports:
+      - "8888:8888"
+    depends_on:
+      - mysqldb
+    links:
+      - "mysqldb:db"
+    network_mode: bridge
+
+  nginx:
+    image: nginx:v3
+    container_name: nginx
+    build:
+      context: ./nginx
+    ports:
+      - "80:80"
+    links:
+      - "nodejs:nodejs"
+    network_mode: bridge  

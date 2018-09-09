@@ -1,6 +1,8 @@
 pub_key_path = "~/.ssh/id_rsa.pub"
 private_key_path = "~/.ssh/id_rsa"
-key_name = "tsouza"
+key_name = "sample_key"
+aws_access_key = ""
+aws_secret_key = ""
 
 web_server_params {
   count = "1"
