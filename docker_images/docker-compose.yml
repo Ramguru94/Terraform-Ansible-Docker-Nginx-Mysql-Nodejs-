@@ -2,6 +2,9 @@ version: '3'
 
 services:
   mysqldb:
+    networks:
+      prod:
+    hostname: mysqldb
     image: mysql:5.7_v1
     container_name: mysqldb
     build:
@@ -15,30 +18,38 @@ services:
       MYSQL_PASSWORD: nodeuser!
     volumes:
       - ./mysql/data:/var/lib/mysql
-    network_mode: bridge
 
   nodejs:
+    networks:
+      prod:
+    hostname: nodejs
     image: nodejs:v1
     container_name: nodejs
     build:
       context: ./nodejs
     ports:
-      - "8888:8888"
+      - "8080:8080"
     depends_on:
       - mysqldb
-    links:
-      - "mysqldb:db"
     environment:
       - NODEJS_API_PORT=8080
-    network_mode: bridge
 
   nginx:
+    networks:
+      prod:
+    hostname: nginx
     image: nginx:v1
     container_name: nginx
     build:
       context: ./nginx
     ports:
       - "80:80"
-    links:
-      - "nodejs:nodejs"
-    network_mode: bridge  
+    environment:
+     -  NODEJS_IP=nodejs
+    depends_on:
+      - nodejs
+#    command: echo $(ping -c1 $NODEJS_IP | sed -nE 's/^PING[^(]+\(([^)]+)\).*/\1/p') nodejs >> /etc/hosts
+
+networks:
+  prod:
+    driver: bridge
