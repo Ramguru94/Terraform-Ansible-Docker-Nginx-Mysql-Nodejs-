@@ -15,7 +15,6 @@ services:
       MYSQL_PASSWORD: nodeuser!
     volumes:
       - ./mysql/data:/var/lib/mysql
-    network_mode: bridge
 
   nodejs:
     image: nodejs:v1
@@ -23,14 +22,11 @@ services:
     build:
       context: ./nodejs
     ports:
-      - "8888:8888"
+      - "8080:8080"
     depends_on:
       - mysqldb
-    links:
-      - "mysqldb:db"
     environment:
       - NODEJS_API_PORT=8080
-    network_mode: bridge
 
   nginx:
     image: nginx:v1
@@ -39,6 +35,7 @@ services:
       context: ./nginx
     ports:
       - "80:80"
-    links:
-      - "nodejs:nodejs"
-    network_mode: bridge  
+    environment:
+     -  NODEJS_IP=nodejs
+    depends_on:
+      - nodejs
