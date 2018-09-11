@@ -160,3 +160,87 @@ We can use module just like:
   }
 ```
 [More information about modules](https://www.terraform.io/docs/modules/index.html)
+
+To Deploy the Docker containers in AWS EC2 instance, run the Terraform Script to create the EC2 instance with the required configurations.
+
+### Ansible
+
+Here we are using Terraform to bring uo EC2 instance and Ansible to Install Docker and Deploy Docker containers using docker-compose on the target machine.
+
+### Ansible Installation
+
+[Ansible Installation for various Platforms can be found here](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html)
+
+#### Ansible Roles Available
+Various Ansible Roles used are,
+
+* Install Docker
+* Start Docker Containers 
+* Stop Docker Containers
+
+
+Depending on executing the Ansible Script locally or on AWS EC2 instance, the `hosts:` part of yml file will change.
+
+Open file the file `/etc/ansible/hosts` and at end of the file, add the following entry if your are going to run the ansible script against EC2 instance,
+```
+[my-ec2]
+ec2-ip
+```
+Then your yml file will look like
+
+```
+---
+- hosts: ec2-ip
+  become: yes
+
+  roles:
+    - { role: docker_install }
+```
+
+Or if your going to run locally, then your yml file will look file,
+
+```
+---
+- hosts: 127.0.0.1
+  connection: local
+  become: yes
+
+  roles:
+    - { role: docker_install }
+```
+
+You can also group all the ansible roles together in a single yml file and run the tasks one by one like,
+
+```
+---
+- hosts: 127.0.0.1
+  connection: local
+  become: yes
+
+  roles:
+    - { role: docker_install }
+    - { role: docker-compose }
+```
+Which will install Docker on your Target Machine and run docker-compose to bring all the Docker Containers.
+
+To stop all the containers,
+
+```
+---
+- hosts: 127.0.0.1
+  connection: local
+  become: yes
+
+  roles:
+    - { role: docker-compose-down }
+```
+
+
+
+
+
+
+
+
+
+
