@@ -1,11 +1,11 @@
-FROM alpine:3.7
+FROM alpine:3.8
 
 RUN apk --update add pcre libbz2 ca-certificates libressl && rm /var/cache/apk/*
 
 RUN adduser -h /etc/nginx -D -s /bin/sh nginx
 WORKDIR /tmp
 
-ENV NGINX_VERSION=1.13.12
+ENV NGINX_VERSION=1.14.0
 
 # add compilation env, build required C based gems and cleanup
 RUN apk --update add --virtual build_deps build-base zlib-dev pcre-dev libressl-dev \

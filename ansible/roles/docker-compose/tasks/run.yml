@@ -1,5 +1,2 @@
-#- name: run the service defined in  docker-compose.yml
-#  docker_service:
-#    project_src: "/root/free/Terraform-Ansible-Docker-Nginx-Mysql-Nodejs-/docker_images"
 - name: Change Active directory to run docker-compose
-  shell: cd /root/free/Terraform-Ansible-Docker-Nginx-Mysql-Nodejs-/docker_images && docker-compose up -d
+  shell: cd ../docker_images && docker-compose -p bridge up -d

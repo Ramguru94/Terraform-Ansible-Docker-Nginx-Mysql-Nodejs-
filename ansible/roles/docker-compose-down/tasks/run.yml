@@ -1,0 +1,2 @@
+- name: Change Active directory to run docker-compose
+  shell: cd ../docker_images && docker-compose -p bridge down
