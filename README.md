@@ -194,7 +194,7 @@ Then your yml file will look like
   become: yes
 
   roles:
-    - { role: docker_install }
+    - docker_install
 ```
 
 Or if your going to run locally, then your yml file will look file,
@@ -206,7 +206,7 @@ Or if your going to run locally, then your yml file will look file,
   become: yes
 
   roles:
-    - { role: docker_install }
+    - docker_install
 ```
 
 You can also group all the ansible roles together in a single yml file and run the tasks one by one like,
@@ -218,8 +218,8 @@ You can also group all the ansible roles together in a single yml file and run t
   become: yes
 
   roles:
-    - { role: docker_install }
-    - { role: docker-compose }
+    - docker_install
+    - docker-compose
 ```
 Which will install Docker on your Target Machine and run docker-compose to bring all the Docker Containers.
 
@@ -232,8 +232,18 @@ To stop all the containers,
   become: yes
 
   roles:
-    - { role: docker-compose-down }
+    - docker-compose-down
 ```
+
+### How to run Ansible Script
+
+Move to ansible directory and use ansible-playbook command to run the yml file
+
+``` ansible-playbook docker-compose-full
+```
+
+This ansible script will install Docker and start three Docker containers.
+
 
 ### Docker Images
 
