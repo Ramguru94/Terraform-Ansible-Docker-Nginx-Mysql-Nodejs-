@@ -190,7 +190,7 @@ Then your yml file will look like
 
 ```
 ---
-- hosts: ec2-ip
+- hosts: my-ec2
   become: yes
 
   roles:
