@@ -235,7 +235,23 @@ To stop all the containers,
     - { role: docker-compose-down }
 ```
 
+### Docker Images
 
+Docker Images added,
+
+```
+* Nginx - Apline:3.8, Nginx:1.14.0
+* Nodejs - Latest
+* Mysql:5.7
+```
+
+### Mysql Docker Image:
+
+As a part of Mysql Docker image, we have provision to drop our mysql dump that can be manually imported once the image is booted up. Since Mysql dump importing is one time process, its not automated to avoid unwanted conflicts.
+
+### Nodejs Docker Image:
+
+  As a part of Nodejs Image, we can add app script, package.json along with the Docker image. For every changes made in the script, new version of Docker image needs to be created and booted. This recreation of Container is applicable for changes done in Dockerfile and docker-compose.
 
 
 
