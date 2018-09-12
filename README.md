@@ -258,7 +258,7 @@ Docker Images added,
 
 ### Mysql Docker Image:
 
-As a part of Mysql Docker image, we have provision to drop our mysql dump that can be manually imported once the image is booted up. Since Mysql dump importing is one time process, its not automated to avoid unwanted conflicts.
+As a part of Mysql Docker image, we have provision to drop our mysql dump inside docker-images/mysql/mysq_dump, where the docker-entrypoint.sh takes care of importing the mysql dump into the database when the container starts.
 
 ### Nodejs Docker Image:
 
