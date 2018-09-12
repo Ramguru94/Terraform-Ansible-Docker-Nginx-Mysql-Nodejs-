@@ -239,7 +239,8 @@ To stop all the containers,
 
 Move to ansible directory and use ansible-playbook command to run the yml file
 
-``` ansible-playbook docker-compose-full
+``` 
+ansible-playbook docker-compose-full
 ```
 
 This ansible script will install Docker and start three Docker containers.
