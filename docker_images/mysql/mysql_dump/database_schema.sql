@@ -1,4 +1,4 @@
-CREATE DATABASE `notes`
+CREATE DATABASE `notes`;
 
 CREATE TABLE `notes`.`Note` (
   `Id` int(11) NOT NULL AUTO_INCREMENT,
