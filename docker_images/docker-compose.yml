@@ -11,6 +11,8 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: mysq1root!
       MYSQL_DATABASE: database_schema
+      MYSQL_USER: nodeuser
+      MYSQL_PASSWORD: nodeuser!
     volumes:
       - ./mysql/data:/var/lib/mysql
       - ./mysql/mysql_dump:/docker-entrypoint-initdb.d

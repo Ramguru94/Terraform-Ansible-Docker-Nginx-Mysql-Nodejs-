@@ -8,8 +8,8 @@ if (!port) {
 }
 var connection = mysql.createConnection({
 	host: 'mysqldb',
-	user: 'root',
-	password: 'mysq1root!'
+	user: 'nodeuser',
+	password: 'nodeuser!'
 });
 
 var server = restify.createServer();
